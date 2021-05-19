@@ -1,0 +1,6 @@
+{
+  "files.associations": {
+    "wifi_credentials": "cpp",
+    "certs": "cpp"
+  }
+}
