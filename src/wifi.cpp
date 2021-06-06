@@ -10,7 +10,6 @@
 #endif
 
 
-
 void initTime() {
   constexpr int gmt = 2;
   constexpr int timezone = gmt * 3600;

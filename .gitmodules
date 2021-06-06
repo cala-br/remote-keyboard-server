@@ -1,3 +1,4 @@
 [submodule "lib/iremote"]
 	path = lib/iremote
 	url = https://github.com/cala-br/iremote.git
+	branch = main

@@ -11,14 +11,13 @@ const int SDA_PIN = D2;
 const int SCL_PIN = D1;
 
 
-bool connectToWifi();
-
-AuthServer authServer {
-  "calabr",
-  "12345",
+UdpServerSecure irServer {
+  new AuthServer {
+    "calabr",
+    "12345",
+    {SERVER_CERT, SERVER_KEY},
+  }
 };
-
-UdpServerSecure irServer {authServer};
 
 
 void setup() {
@@ -35,16 +34,14 @@ void setup() {
   
 
   initTime();
-  authServer.setCertificates(SERVER_CERT, SERVER_KEY);
-  authServer.begin();
   irServer.begin(7382);
-  
   Serial.println("Server is ready");
 }
 
 void loop() {
-  authServer.handleNext();
   irServer.handleNext([] (UdpString command) {
+    Wire.beginTransmission(0x1);
     Wire.println(command);
+    Wire.endTransmission();
   });
 }
